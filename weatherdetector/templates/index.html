@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Weather</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h1>Weather Detector</h1>
+  </nav>
+
+  <!-- Search Box -->
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="search-box">
+      <input type="text" name="city" placeholder="Enter city name...">
+      <button type="submit">
+        <i class="glyphicon glyphicon-search"></i>
+      </button>
+    </div>
+  </form>
+
+  <!-- Weather Result Card -->
+  {% if data.country_code %}
+  <div class="weather-card">
+    <h1>{{city}}</h1>
+    <h3>Country Code: {{data.country_code}}</h3>
+    <h5>Coordinate: {{data.coordinate}}</h5>
+    <h5>Temp: {{data.temp}}</h5>
+    <h5>Pressure: {{data.pressure}}</h5>
+    <h5>Humidity: {{data.humidity}}</h5>
+  </div>
+  {% endif %}
+</body>
+</html>
